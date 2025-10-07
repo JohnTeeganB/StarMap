@@ -13,3 +13,4 @@ SWAPI-planets (codenamed: StarMap) is a Python app that uses SWAPI (Star Wars AP
 ## Issues
  - Repository created and app verified to connect with SWAPI.
  - Realized error handling was not robust enough, added multiple exception handling techniques using the `requests` library.
+ - After calling the API the program would just end so I added the ability for the user to make another request if they have multiple planets they'd like to explore.
