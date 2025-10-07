@@ -12,11 +12,21 @@ def get_planet(id):
         print(f"Terrain: {data['terrain']}")
         print(f"Population: {data['population']}")
         print("---------------------------")
-    except requests.exceptions.HTTPError:
-        print("Invalid planet ID or API unavailable.")
+    except requests.exceptions.Timeout:
+        print("Request timed out. The SWAPI server may be busy — please try again.")
+    except requests.exceptions.ConnectionError:
+        print("Network error: Could not connect to SWAPI. Check your internet connection.")
+    except requests.exceptions.HTTPError as e:
+        if response.status_code == 404:
+            print("Planet not found. Please enter a valid planet ID.")
+        else:
+            print(f"HTTP error occurred: {e}")
+    except ValueError:
+        print("Error: Received unexpected data format from API.")
     except Exception as e:
-        print("Error:", e)
+        print("An unexpected error occurred:", e)
 
 if __name__ == "__main__":
     planet_id = input("Enter a planet ID (1–60): ")
+
     get_planet(planet_id)
