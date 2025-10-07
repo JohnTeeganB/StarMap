@@ -27,6 +27,12 @@ def get_planet(id):
         print("An unexpected error occurred:", e)
 
 if __name__ == "__main__":
-    planet_id = input("Enter a planet ID (1–60): ")
+    while True:
+        planet_id = input("\nEnter a planet ID (1–60): ")
+        get_planet(planet_id)
 
-    get_planet(planet_id)
+        again = input("\nWould you like to look up another planet? (y/n): ").strip().lower()
+        if again != 'y':
+            print("\nThe Force will be with you, always...")
+            break
+
